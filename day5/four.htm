@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    function changeImage(changeImg){
+        document.getElementById("img1").src=changeImg
+    }
+        function displayValue(val){
+            document.getElementById("res").innerText=val
+        }
+    </script>
+</head>
+<body>
+    <h1 onmouseover="displayValue(this.innerText)">this is one</h1>
+    <h1 onmouseover="displayValue(this.innerText)">this is two</h1>
+    <h2>the value of h1 is <span id="res"></span></h2>
+    <img src="emoji_smile.jpg" id="img1"
+    onmouseover='changeImage("emoji_cry.jpg")'
+    onmouseout='changeImage("emoji_smile.jpg")'>
+</body>
+</html>

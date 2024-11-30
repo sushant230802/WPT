@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function fetchDataAjax(){
+            x=new XMLHttpRequest();
+            x.open("GET","https://jsonplaceholder.typicode.com/todos?_limit=25");
+            x.onreadystatechange=function (){
+                if(x.readyState==4 && x.status==200){
+                    data=x.responseText;
+                    console.log(typeof data)
+                    pdata=JSON.parse(data);  //array of json objects
+                    document.getElementById("ajaxtable").innerHTML = 
+                        "<tr><th>userId</th><th>id</th><th>title</th><th>completed</th></tr>"
+
+                   for(p in pdata){
+                    document.getElementById("ajaxtable").innerHTML+=
+                    `<tr>
+                        <td>${pdata[p].userId}</td>
+                        <td>${pdata[p].id}</td>
+                        <td>${pdata[p].title}</td>
+                        <td>${pdata[p].completed}</td>
+                    </tr>`
+                   } 
+                   console.log(pdata)
+                }
+            }
+            x.send();
+        }
+
+        function fetchDataJquery(){
+            $.get("https://jsonplaceholder.typicode.com/todos?_limit=25",function(data){
+                table=$("#jquerytable");
+                table.append("<tr><th>userId</th><th>id</th><th>title</th><th>completed</th></tr>")
+                for(d in  data){
+                    table.append(`<tr>
+                        <td>${data[d].userId}</td>
+                        <td>${data[d].id}</td>
+                        <td>${data[d].title}</td>
+                        <td>${data[d].completed}</td>
+                    </tr>`)
+                }
+                console.log(data)
+            })
+        }
+
+        function fetchDataAxios(){
+            const promise=axios("https://jsonplaceholder.typicode.com/todos?_limit=25")
+            promise.then(response=>{
+                console.log(typeof response);
+                console.log(response)
+                pdata=response.data;
+                for(p in pdata){
+                    document.getElementById("axiostable").innerHTML+=
+                    `<tr>
+                        <td>${pdata[p].userId}</td>
+                        <td>${pdata[p].id}</td>
+                        <td>${pdata[p].title}</td>
+                        <td>${pdata[p].completed}</td>
+                    </tr>`
+                   } 
+                   console.log(pdata)
+                   console.log(typeof pdata)
+            })
+        }
+
+        const url="https://jsonplaceholder.typicode.com/todos?_limit=25"
+        const promise1=fetch(url)
+        promise1.then(response=>{
+            console.log(response)
+            console.log(typeof response)
+            const promise2= response.json()
+            return promise2;
+        })
+        .then(res=>{
+            console.log(typeof res)
+            console.log(res);
+        })
+    </script>
+</head>
+<body>
+    <button onclick="fetchDataAjax()">get data</button>
+    <h1>AJAX TABLE</h1>
+    <table id="ajaxtable">
+        
+    </table>
+    <button onclick="fetchDataJquery()">get data</button>
+    <h1>JQUERY TABLE</h1>
+    <table id="jquerytable">
+
+    </table>
+    <button onclick="fetchDataAxios()">get data</button>
+    <h1>AXIOS TABLE</h1>
+    <table id="axiostable">
+
+    </table>
+</body>
+</html>

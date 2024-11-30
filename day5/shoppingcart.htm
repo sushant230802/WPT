@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="sc.js"></script>
+</head>
+<body>
+    <h1>welcome to cdac</h1>
+    <h1>Time:<span id="tm"><script>displayTime()</script></span></h1>
+    <h1>Shopping Cart</h1>
+    <h1>Items in cart:<span id="count"></span></h1>
+    <table>
+        <tr>
+            <th>Images</th>
+            <th>Description</th>
+            <th>Rate</th>
+            <th>Qty</th>
+            <th>Total</th>
+            <th>Select</th>
+        </tr>    
+        <tr>
+            <td><img></td>
+            <td>Sample Product1</td>
+            <td id="rate1">300</td>
+            <td><input type="number" id="i1" min="0" onclick='updateTotal("rate1","i1","total1")'></td>
+            <td id="total1"></td>
+            <td><input type="checkbox" onclick="addItem(this.id)" value="one" id="one" ></td>
+        </tr>
+        <tr>
+            <td><img></td>
+            <td>Sample Product2</td>
+            <td id="rate2">500</td>
+            <td><input type="number" id="i2" min="0" onclick='updateTotal("rate2","i2","total2")'></td>
+            <td id="total2"></td>
+            <td><input type="checkbox" onclick="addItem(this.id)" value="two" id="two"></td>
+        </tr>
+        <tr>
+            <td><img></td>
+            <td>Sample Product3</td>
+            <td id="rate3">100</td>
+            <td><input type="number" id="i3" min="0" onclick='updateTotal("rate3","i3","total3")'></td>
+            <td id="total3"></td>
+            <td><input type="checkbox" onclick="addItem(this.id)" value="three" id="three"></td>
+        </tr>
+        <tr>
+            <td><img></td>
+            <td>Sample Product4</td>
+            <td id="rate4">125</td>
+            <td><input type="number" id="i4" min="0" onclick='updateTotal("rate4","i4","total4")'></td>
+            <td id="total4"></td>
+            <td><input type="checkbox" onclick='addItem(this.id,"total4")' value="four" id="four"></td>
+        </tr>
+        <tr>
+            <td><img></td>
+            <td>Sample Product5</td>
+            <td id="rate5">400</td>
+            <td><input type="number" id="i5" min="0" onclick='updateTotal("rate5","i5","total5")'></td>
+            <td id="total5"></td>
+            <td><input type="checkbox" onclick="addItem(this.id)" value="five" id="five"></td>
+        </tr>
+    </table>
+    <h1>Total Cart Amount:<span id="totalAmount">0</span></h1>
+</body>
+</html>

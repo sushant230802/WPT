@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale=1.0>
+    <title>Document</title>
+    <script src="jq.js"></script>
+    <script>
+    emp = [
+				{ "id": 6, "fname": "Ritu" },
+				{ "id": 7, "fname": "Mitu" },
+				{ "id": 8, "fname": "Sita" },
+				{ "id": 9, "fname": "Gita" },
+				{ "id": 10, "fname": "Priya" },
+				{ "id": 11, "fname": "Alok" }
+			];
+
+        $(()=>{
+            x=$("#abc");
+            x.text("sushant").css("color","red")
+
+            for(e in emp){
+                x=$("#emptable")
+                x.append(`<tr><td>${emp[e].id}</td><td>${emp[e].fname}</td></tr>`)
+            }
+        })
+        function checkName(){
+            fn=$("#fname").val();
+            $("#res").text(fn).
+            css({"color":"red","background-color":"green"})
+        }
+        
+    </script>
+</head>
+<body>
+    <table id="emptable">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Naushad</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>mitesh</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>nitesh</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>jitesh</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>ritesh</td>
+    </tr>
+    </table>
+    <h1 id="abc">Jquery Hello</h1>
+	<h1 id="abc1">Jquery Hello1</h1>
+    <input type="text" id="fname" placeholder="Enter Your Name">
+    <button onclick="checkName()">Check Name</button>
+	<h2>Your Name is <span id="res"></span></h2>
+</body>
+</html>

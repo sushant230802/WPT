@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getScore(){
+            x=new XMLHttpRequest()
+            x.open("GET","score.json");
+            x.onreadystatechange=function(){
+                console.log(x.readyState);
+                if(x.readyState==4 && x.status==200){
+                    data=x.responseText; //gives in raw string form
+                    pdata=JSON.parse(data);
+                    document.getElementById("score").innerText=pdata.score;
+                    document.getElementById("wide").innerText=pdata.wide;            
+                }
+            }
+            x.send();
+        }
+    </script>
+</head>
+<body>
+    <h1>Score is : <span id="score"></span></h1>
+		<h1>Wide is : <span id="wide"></span></h1>
+		<button type="button" onclick="getScore()">Get Score</button>
+</body>
+</html>

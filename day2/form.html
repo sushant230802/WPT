@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <table>
+        <form action="regForm.html" method="post" onsubmit="submitForm()">
+            <tr>
+                <td><label>First Name:</label></td>
+                <td><input name="fname" type="text" placeholder="enter name" id="fname"></td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td><input name="age" type="number" placeholder="enter age"></td>
+            </tr>
+            <tr>
+                <td>password:</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td>
+                    <input type="radio" name="gender" value="male" id="m"><label for="m">Male</label>
+                    <input type="radio" name="gender" value="female" id="f"><label for="f">FEMALE</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Education:</td>
+                <td>
+                    <select  multiple name="qual">
+                        <option value="No school">No school</option>
+                        <option value="high school" selected>high school</option>
+                        <option value="graduate school">graduate school</option>
+                        <option value="post graduate school">post graduate school</option>
+                    </select>  
+                </td>
+            </tr>
+            <tr>
+                <td>Hobbies:</td>
+                    <td>
+                        <input name="hobbies" type="checkbox" value="sports" id="s">
+                        <label for="s">Sports</label>
+                        <input name="hobbies" type="checkbox" value="Singing" id="si">
+                        <label for="si">Singing</label>
+                        <input name="hobbies" type="checkbox" value="Dancing" id="d">
+                        <label for="d">Dancing</label>
+                    </td>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="register new">
+                    <input type="reset" value="clear">
+                    <input type="button" value="click">
+                </td>
+            </tr>
+           
+        </form>
+
+    </table>
+    <script>
+        function submitForm(){
+            var fname = document.getElementById("fname").value; //getting fname by id
+
+            var age = document.forms[0].age;
+            var gender = document.forms[0].gender;
+            var qual = document.forms[0].qual;
+
+            var hobbies = document.forms[0].hobbies;
+
+
+            var obj = fname + age.value + gender.value +  qual.value + hobbies.value;
+            
+
+            sessionStorage.setItem("form",obj);
+
+
+        }
+    </script>
+</body>
+</html>
