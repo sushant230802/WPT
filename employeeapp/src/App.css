@@ -1,0 +1,11 @@
+.App_div{
+  display:flex;
+  justify-content: space-evenly;
+  background-color: red;
+}
+.userclass{
+  background-color: pink;
+}
+.clickbutton{
+  height: 100%;
+}
