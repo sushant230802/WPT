@@ -1,0 +1,76 @@
+npm init
+npm install express
+npm install sql2
+npm install ejs
+
+
+Step-by-Step Explanation of the Entire Process:
+1. Database Connection Setup
+File: db_connection.js
+A connection to the MySQL database is established using the mysql2 library.
+If the database cdac_pune does not exist, it is created.
+A table named customers is created if it does not already exist. It includes:
+id (Primary key, auto-incremented)
+name (Stores customer names)
+address (Stores customer addresses)
+This connection is exported for use in other parts of the application.
+2. Data Access Object (DAO) Layer
+File: dao_layer.js
+
+The DAO layer interacts directly with the database using the connection object (con).
+
+Functions:
+
+addCustomer:
+Inserts a new customer (name and address) into the customers table using a parameterized query to prevent SQL injection.
+getCustomerById:
+Fetches a customer’s data based on their id from the customers table.
+Returns a promise, ensuring asynchronous database operations can be handled cleanly.
+3. Service Layer
+File: service_layer.js
+
+The service layer acts as an intermediary between the DAO layer and the controller. It prepares data before sending it to the DAO.
+
+Functions:
+
+addServiceCustomer:
+Accepts name and address, converts them to uppercase, and creates a customer object (cust_data) that is passed to the DAO's addCustomer function.
+getServiceCustomerById:
+Calls the DAO function getCustomerById to fetch a customer by their id.
+4. Controller Layer
+File: Likely app.js
+
+Uses express to create an HTTP server, handle routing, and process requests.
+
+Features:
+
+Middleware Setup:
+express.json() is used to parse incoming JSON request bodies.
+EJS Setup:
+Sets ejs as the template engine for rendering dynamic HTML pages.
+Routes:
+
+/testing (POST):
+Renders an EJS template (displaydata) with the username akhar dynamically embedded in the view.
+/newuser (POST):
+Extracts uname and address from the request body.
+Calls the service layer's addServiceCustomer function to add the new customer.
+Responds with "Done".
+/userid/:id (GET):
+Extracts a user ID (id) from the URL parameters.
+Calls the service layer's getServiceCustomerById function.
+Responds with the customer data retrieved from the database.
+5. Frontend (EJS Template)
+File: displaydata.ejs
+A simple HTML template rendered by the /testing route in the controller.
+Displays a dynamic username (uname), passed by the server while rendering.
+
+
+
+This structure is an example of a layered architecture:
+
+Database (Persistence): Direct MySQL operations.
+DAO Layer: Abstracts database queries.
+Service Layer: Processes and validates data.
+Controller Layer: Handles routes and client-server interactions.
+View Layer: Dynamically renders the UI.
